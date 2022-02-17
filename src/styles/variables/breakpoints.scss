@@ -1,0 +1,17 @@
+/**
+ * Breakpoints
+ */
+
+// Min
+$breakpoints-min: (
+  tablet: 768,
+  desktop: 1024px,
+  xl: 1440px,
+);
+
+// Max
+$breakpoints-max: (
+  tablet: 767px,
+  desktop: 1023px,
+  xl: 1439px,
+);

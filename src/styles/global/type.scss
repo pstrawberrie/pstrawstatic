@@ -1,0 +1,33 @@
+/**
+ * Typography
+ */
+
+p {
+  @include font-default;
+  font-size: 1rem;
+  line-height: 1.1rem;
+}
+
+h1 {
+  @include font-title-black;
+  font-size: rem-calc(48);
+  line-height: rem-calc(60);
+}
+
+h2 {
+  @include font-title-black;
+  font-size: rem-calc(40);
+  line-height: rem-calc(44);
+}
+
+h3 {
+  @include font-title;
+  font-size: rem-calc(36);
+  line-height: rem-calc(38);
+}
+
+h4 {
+  @include font-title;
+  font-size: rem-calc(30);
+  line-height: rem-calc(32);
+}

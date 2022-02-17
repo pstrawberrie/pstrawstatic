@@ -1,0 +1,19 @@
+@mixin font-default {
+  font-family: "Work Sans", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+@mixin font-default-light {
+  font-family: "Work Sans", Arial, Helvetica, sans-serif;
+  font-weight: 200;
+}
+
+@mixin font-title {
+  font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+  font-weight: normal;
+}
+
+@mixin font-title-black {
+  font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+  font-weight: 900;
+}

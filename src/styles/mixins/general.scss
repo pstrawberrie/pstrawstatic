@@ -1,0 +1,20 @@
+@mixin contain-base {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+@mixin contain {
+  @include contain-base;
+  max-width: $container-default;
+}
+
+@mixin contain-sm {
+  @include contain-base;
+  max-width: $container-sm;
+}
+
+@mixin contain-lg {
+  @include contain-base;
+  max-width: $container-lg;
+}

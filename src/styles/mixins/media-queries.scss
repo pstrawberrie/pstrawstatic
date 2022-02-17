@@ -1,0 +1,17 @@
+/**
+ * Media Queries
+ */
+
+// Min Width Breakpoints
+@mixin bp-up($val) {
+  @media (min-width: em-calc(map-get($breakpoints-min, $val))) {
+    @content;
+  }
+}
+
+// Max Width Breakpoints
+@mixin bp-down($val) {
+  @media (max-width: em-calc(map-get($breakpoints-max, $val))) {
+    @content;
+  }
+}

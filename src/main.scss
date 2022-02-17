@@ -1,0 +1,18 @@
+/**
+ * Main Style Entry
+ */
+
+// Resets
+@import "./styles/vendor/reset";
+
+// Standard Imports
+@import "./imports";
+
+// Base Styles
+@import "./styles/base";
+
+// Global Styles
+@import "./styles/global/index";
+
+// TEST
+@import "./styles/test";
