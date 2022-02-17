@@ -47,45 +47,6 @@ function onToggleClick() {
   return toggleMobileNav(true);
 }
 
-// Submenus
-// function isSubMenuExpanded(name) {
-//   if (name) {
-//     const ele = navMain.querySelector(`[data-nav-menu="${name}"]`);
-//     if (ele && ele.getAttribute("aria-hidden") === "false") return true;
-//   }
-
-//   return false;
-// }
-
-// function toggleSubMenu(name) {
-//   if (name) {
-//     const isExpanded = isSubMenuExpanded();
-//     const toggleEle = navMain.querySelector(`[data-nav-toggle="${name}"]`);
-//     const menuEle = navMain.querySelector(`[data-nav-menu="${name}"]`);
-
-//     if (toggleEle && menuEle) {
-//       const menuLinks = menuEle.getElementsByTagName("a");
-
-//       toggleEle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
-//       menuEle.setAttribute("aria-hidden", isExpanded ? "true" : "false");
-
-//       [...menuLinks].map((linkEle) =>
-//         linkEle.setAttribute("tabindex", isExpanded ? "-1" : "0")
-//       );
-//     }
-//   }
-// }
-
-// function onSubToggleFocus(e) {
-//   const menuName = e.target.dataset.navToggle;
-//   toggleSubMenu(menuName);
-// }
-
-// function onSubToggleBlur(e) {
-//   const menuName = e.target.dataset.navToggle;
-//   toggleSubMenu(menuName);
-// }
-
 /**
  * Resize
  */
@@ -102,7 +63,6 @@ function onResize() {
     toggleMobileNav(true, true);
 
   viewportWidth = window.innerWidth;
-  console.log("tap"); //REMOVE
 }
 
 /**
@@ -110,10 +70,6 @@ function onResize() {
  */
 window.addEventListener("resize", onResize);
 elements.navToggle.addEventListener("click", onToggleClick);
-// [...elements.navMenuSubToggles].map((ele) => {
-//   ele.addEventListener("focus", onSubToggleFocus);
-//   ele.addEventListener("blur", onSubToggleBlur);
-// });
 
 /**
  * On Load

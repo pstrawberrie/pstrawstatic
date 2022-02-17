@@ -12,9 +12,8 @@ module.exports = `
     </button>
     <ul class="top" aria-hidden="true">
       <li class="logo"><a href="home.html">${SITE.TITLE}</a></li>
-      <li><a href="notes.html">about</a></li>
+      <li><a href="notes.html">notes</a></li>
       <li><a href="about.html">about</a></li>
     </ul>
-    
   </nav>
 `;
