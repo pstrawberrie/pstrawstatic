@@ -1,2 +1,1 @@
-
-console.log('about.js loaded');
+console.log("--> about.js loaded");

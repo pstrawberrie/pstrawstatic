@@ -94,21 +94,6 @@ nav.nav-main {
     }
   }
 
-  @include bp-up(desktop) {
-    li.logo {
-      background: transparent url("assets/logo_128.png") no-repeat left center;
-      height: 100%;
-
-      a {
-        font-size: 0;
-        min-width: 70px;
-        height: 45px;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-    }
-  }
-
   ul.top {
     @include contain;
     position: relative;
@@ -118,6 +103,12 @@ nav.nav-main {
 
     &.can-animate {
       transition: all 0.2s ease-in-out;
+    }
+
+    @include bp-up(desktop) {
+      li:first-child a {
+        padding-left: 0;
+      }
     }
 
     @include bp-down(desktop) {

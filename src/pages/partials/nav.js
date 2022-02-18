@@ -2,6 +2,15 @@
  * Nav Partial
  */
 const SITE = require("../../../config");
+const { getPages } = require("../../scripts/fs");
+
+const navLinks = () => {
+  const pages = getPages(["test"]);
+  return pages.map((page) => {
+    const pageName = page === "home" ? SITE.TITLE : page;
+    return `<li><a href="${page}.html">${pageName}</a></li>`;
+  });
+};
 
 module.exports = `
   <nav class="nav-main">
@@ -11,9 +20,7 @@ module.exports = `
       <span class="l3"></span>
     </button>
     <ul class="top" aria-hidden="true">
-      <li class="logo"><a href="home.html">${SITE.TITLE}</a></li>
-      <li><a href="notes.html">notes</a></li>
-      <li><a href="about.html">about</a></li>
+      ${navLinks().join("")}
     </ul>
   </nav>
 `;

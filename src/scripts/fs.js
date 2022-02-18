@@ -4,8 +4,11 @@
 const fs = require("fs");
 
 // Get Pages
-exports.getPages = () => {
-  const excludedPages = ["partials"];
+exports.getPages = (excludeArr) => {
+  const excludedPages =
+    excludeArr && typeof excludeArr === "object" && excludeArr.length > 0
+      ? ["partials", ...excludeArr]
+      : ["partials"];
   const pages = [];
 
   fs.readdirSync("./src/pages/").forEach((file) => {
