@@ -6,6 +6,20 @@ const { getPages } = require("../../scripts/fs");
 
 const navLinks = () => {
   const pages = getPages(["test"]);
+
+  // Ensure 'home' is first link
+  if (pages.indexOf("home") > -1) {
+    pages.splice(pages.indexOf("home"), 1);
+    pages.splice(0, 0, "home");
+  }
+
+  // Ensure 'about' is last link
+  if (pages.indexOf("about") > -1) {
+    pages.splice(pages.indexOf("about"), 1);
+    pages.splice(pages.length, 0, "about");
+  }
+
+  // Create link html
   return pages.map((page) => {
     const pageName = page === "home" ? SITE.TITLE : page;
     return `<li><a href="${page}.html">${pageName}</a></li>`;
