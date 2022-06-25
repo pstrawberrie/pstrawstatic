@@ -5,10 +5,33 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body id="<%= htmlWebpackPlugin.options.pageName %>">
+    <!-- Nav Include -->
     <%= htmlWebpackPlugin.options.pageNav %>
+
+    <!-- Main Content -->
     <main>
       <h1>Homeuuuu333sdf</h1>
+      <div data-modal-trigger="test" aria-expanded="false">OPEN MODAL 1</div>
+      <div data-modal-trigger="test2" aria-expanded="false">OPEN MODAL 2</div>
     </main>
+
+    <!-- Test Modal 1 -->
+    <dialog class="modal" data-modal="test" aria-hidden="true">
+      <div class="modal__inner">
+        <div class="modal__content">This is the modal content inside</div>
+        <button class="modal__close" aria-label="close modal"></button>
+      </div>
+    </dialog>
+
+    <!-- Test Modal 2 -->
+    <dialog class="modal" data-modal="test2" aria-hidden="true">
+      <div class="modal__inner">
+        <div class="modal__content">This is the SECOND modal</div>
+        <button class="modal__close" aria-label="close modal"></button>
+      </div>
+    </dialog>
+
+    <!-- Scripts -->
     <script defer src="main.js"></script>
   </body>
 </html>

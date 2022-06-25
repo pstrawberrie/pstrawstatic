@@ -6,15 +6,15 @@
 
 @mixin contain {
   @include contain-base;
-  max-width: $container-default;
+  max-width: em-calc($container-default);
 }
 
 @mixin contain-sm {
   @include contain-base;
-  max-width: $container-sm;
+  max-width: em-calc($container-sm);
 }
 
 @mixin contain-lg {
   @include contain-base;
-  max-width: $container-lg;
+  max-width: em-calc($container-lg);
 }

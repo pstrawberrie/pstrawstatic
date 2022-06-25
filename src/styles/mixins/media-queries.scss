@@ -4,14 +4,16 @@
 
 // Min Width Breakpoints
 @mixin bp-up($val) {
-  @media (min-width: em-calc(map-get($breakpoints-min, $val))) {
+  @media (min-width: em-calc(map-get($breakpoints, $val))) {
     @content;
   }
 }
 
 // Max Width Breakpoints
 @mixin bp-down($val) {
-  @media (max-width: em-calc(map-get($breakpoints-max, $val))) {
+  $minusOneVal: map-get($breakpoints, $val) - 1px;
+
+  @media (max-width: em-calc($minusOneVal)) {
     @content;
   }
 }

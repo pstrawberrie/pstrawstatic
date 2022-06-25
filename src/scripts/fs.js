@@ -24,3 +24,12 @@ exports.getNicePageName = (str) =>
     .toLowerCase()
     .replace(/(^| )(\w)/g, (s) => s.toUpperCase())
     .replace(/-/g, " ");
+
+// Get Pages Entry Object
+exports.getPagesEntryObject = () => {
+  const pageObjs = this.getPages().map((page) => {
+    return [page, `./src/pages/${page}/${page}.js`];
+  });
+
+  return Object.fromEntries([...pageObjs]);
+};

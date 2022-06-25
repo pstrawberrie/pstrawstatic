@@ -2,16 +2,21 @@ const path = require("path");
 const SITE = require("./config");
 const isProd = process.env.NODE_ENV === "production";
 
+const postcssPresetEnv = require("postcss-preset-env");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 // Setup Pages
+const {
+  getPages,
+  getPagesEntryObject,
+  getNicePageName,
+} = require("./src/scripts/fs");
+const pages = getPages();
+const pageEntries = getPagesEntryObject();
 const pageHead = require("./src/pages/partials/head");
 const pageNav = require("./src/pages/partials/nav");
-const { getPages, getNicePageName } = require("./src/scripts/fs");
-
-const pages = getPages();
 
 // Start Config
 module.exports = {
@@ -19,12 +24,10 @@ module.exports = {
 
   /**
    * Entry + Output
-   * @TODO - dynamic entries for pages
    */
   entry: {
     main: "./src/main.js",
-    home: "./src/pages/home/home.js",
-    about: "./src/pages/about/about.js",
+    ...pageEntries,
   },
   output: {
     filename: "[name].js",
@@ -53,6 +56,20 @@ module.exports = {
             },
           },
           {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  postcssPresetEnv({
+                    autoprefixer: {
+                      grid: true,
+                    },
+                  }),
+                ],
+              },
+            },
+          },
+          {
             loader: "sass-loader",
             options: {
               sourceMap: true,
@@ -76,7 +93,7 @@ module.exports = {
     ...pages.map(
       (page) =>
         new HtmlWebpackPlugin({
-          title: `${SITE.TITLE} | ${getNicePageName(page)}`,
+          title: `${getNicePageName(page)} @ ${SITE.TITLE}`,
           filename: `${page}.html`,
           chunks: [`${page}`],
           template: `./src/pages/${page}/${page}.html`,

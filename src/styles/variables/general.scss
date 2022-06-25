@@ -2,8 +2,14 @@
  * General Vars
  */
 
+// Sizes
 $base-font-size: 16;
 
 $container-default: 1048px;
 $container-sm: 860px;
 $container-lg: 1440px;
+
+$z-indexes: (
+  modal: 10,
+  nav: 9,
+);

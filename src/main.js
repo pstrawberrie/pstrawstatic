@@ -1,3 +1,4 @@
+import CONSTANTS from "./scripts/constants";
 import "./main.scss";
 
 /**
@@ -6,15 +7,13 @@ import "./main.scss";
 const navMain = document.querySelector("nav.nav-main");
 const elements = {
   navMain,
+  navLinks: navMain.getElementsByTagName("a"),
   navToggle: navMain.querySelector("button.toggle"),
   navMenuTop: navMain.querySelector("ul.top"),
   navMenuSubToggles: navMain.querySelectorAll("button[data-nav-toggle]"),
+  modals: document.querySelectorAll(".modal[data-modal]"),
+  modalTriggers: document.querySelectorAll("[data-modal-trigger]"),
 };
-
-/**
- * Util
- */
-const TABLET_BP = 1024;
 
 /**
  * Nav
@@ -30,6 +29,10 @@ function toggleMobileNav(flag, disableAnimation) {
     elements.navToggle.classList.add("can-animate");
     elements.navMenuTop.classList.add("can-animate");
   }
+
+  [...elements.navLinks].map((el) => {
+    el[flag ? "removeAttribute" : "setAttribute"]("z-index", "-1");
+  });
 
   setTimeout(() => {
     elements.navToggle.setAttribute("aria-expanded", open ? "true" : "false");
@@ -47,31 +50,75 @@ function onToggleClick() {
   return toggleMobileNav(true);
 }
 
-/**
- * Resize
- */
+// Resize
 let viewportWidth = window.innerWidth;
 function onResize() {
   let direction;
   if (window.innerWidth > viewportWidth) direction = 1;
   if (window.innerWidth < viewportWidth) direction = 0;
 
-  if (direction === 0 && window.innerWidth <= TABLET_BP && isNavExpanded)
+  if (
+    direction === 0 &&
+    window.innerWidth <= CONSTANTS.BREAKPOINTS.TABLET &&
+    isNavExpanded
+  )
     toggleMobileNav(false, true);
 
-  if (direction === 1 && window.innerWidth > TABLET_BP)
+  if (direction === 1 && window.innerWidth > CONSTANTS.BREAKPOINTS.TABLET)
     toggleMobileNav(true, true);
 
   viewportWidth = window.innerWidth;
 }
 
 /**
+ * Modals
+ */
+function toggleModal(flag, modal) {
+  if (!modal) return;
+  const modalEle = document.querySelector(`[data-modal="${modal}"]`);
+  const modalTriggerEle = document.querySelector(
+    `[data-modal-trigger="${modal}"]`
+  );
+
+  if (modalEle && modalTriggerEle) {
+    modalEle.setAttribute("aria-hidden", flag ? "false" : "true");
+    modalEle[flag ? "setAttribute" : "removeAttribute"]("open", "");
+    modalTriggerEle.setAttribute("aria-expanded", flag ? "true" : "false");
+  }
+}
+
+function onModalClick(event) {
+  const { target } = event;
+  const isCloseButton = target.classList.contains("modal__close");
+  let modalName = target.dataset.modal;
+  if (!modalName && isCloseButton)
+    modalName = target.closest("[data-modal]").dataset.modal;
+
+  if (isCloseButton || !target.closest(".modal__content"))
+    toggleModal(false, modalName);
+}
+
+function onModalTriggerClick(event) {
+  const { dataset } = event.target;
+  const modalName = dataset.modalTrigger;
+  const modalEle = document.querySelector(`[data-modal="${modalName}"]`);
+
+  if (modalEle) toggleModal(true, modalName);
+}
+
+// ==========================
+/**
  * Listeners
  */
 window.addEventListener("resize", onResize);
 elements.navToggle.addEventListener("click", onToggleClick);
+[...elements.modals].map((el) => el.addEventListener("click", onModalClick));
+[...elements.modalTriggers].map((el) =>
+  el.addEventListener("click", onModalTriggerClick)
+);
 
 /**
  * On Load
  */
-if (window.innerWidth > TABLET_BP) toggleMobileNav(true, true);
+if (window.innerWidth > CONSTANTS.BREAKPOINTS.TABLET)
+  toggleMobileNav(true, true);
