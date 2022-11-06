@@ -7,6 +7,11 @@
 @mixin contain {
   @include contain-base;
   max-width: em-calc($container-default);
+
+  @media (max-width: em-calc(1080px)) {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
 }
 
 @mixin contain-sm {

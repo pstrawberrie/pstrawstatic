@@ -2,6 +2,9 @@
  * Main Nav
  */
 nav.nav-main {
+  position: relative;
+  background: $t-default-darkest;
+
   @include bp-down(desktop) {
     margin-bottom: rem-calc(30);
   }
@@ -15,13 +18,12 @@ nav.nav-main {
     right: 0;
     top: 0;
     width: rem-calc(60);
-    height: 100%;
+    height: rem-calc(50);
     padding: 0;
     z-index: 10;
     cursor: pointer;
     background: transparent;
     border: 0;
-    outline: none;
 
     .l1,
     .l2,
@@ -76,10 +78,6 @@ nav.nav-main {
     color: $c-white;
     cursor: pointer;
 
-    &:focus {
-      outline: 2px solid #f0f;
-    }
-
     &:hover {
       text-decoration: underline;
     }
@@ -99,10 +97,13 @@ nav.nav-main {
     position: relative;
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 1px solid $c-white;
 
     &.can-animate {
       transition: all 0.2s ease-in-out;
+    }
+
+    li:first-child a {
+      color: $t-default-pink;
     }
 
     @include bp-up(desktop) {
@@ -125,6 +126,7 @@ nav.nav-main {
       transform-origin: left;
       transform: translate3d(0, 0, 0);
       background-color: $t-default-dark;
+      padding-left: 0;
 
       &[aria-hidden="true"] {
         transform: translate3d(-101%, 0, 0);

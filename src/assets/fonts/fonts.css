@@ -1,17 +1,8 @@
 @font-face {
-    font-family: 'Merriweather';
-    src: url('Merriweather-Regular.woff2') format('woff2'),
-        url('Merriweather-Regular.woff') format('woff');
+    font-family: 'Pacifico';
+    src: url('Pacifico-Regular.woff2') format('woff2'),
+        url('Pacifico-Regular.woff') format('woff');
     font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Merriweather';
-    src: url('Merriweather-Black.woff2') format('woff2'),
-        url('Merriweather-Black.woff') format('woff');
-    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }

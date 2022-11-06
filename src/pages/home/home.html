@@ -11,8 +11,8 @@
     <!-- Main Content -->
     <main>
       <h1>Homeuuuu333sdf</h1>
-      <div data-modal-trigger="test" aria-expanded="false">OPEN MODAL 1</div>
-      <div data-modal-trigger="test2" aria-expanded="false">OPEN MODAL 2</div>
+      <div data-modal-trigger="test" aria-expanded="false" tabindex="0">OPEN MODAL 1</div>
+      <div data-modal-trigger="test2" aria-expanded="false" tabindex="0">OPEN MODAL 2</div>
     </main>
 
     <!-- Test Modal 1 -->
@@ -32,6 +32,6 @@
     </dialog>
 
     <!-- Scripts -->
-    <script defer src="main.js"></script>
+    <%= htmlWebpackPlugin.options.pageScripts %>
   </body>
 </html>

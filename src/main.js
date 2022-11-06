@@ -32,6 +32,7 @@ function toggleMobileNav(flag, disableAnimation) {
 
   [...elements.navLinks].map((el) => {
     el[flag ? "removeAttribute" : "setAttribute"]("z-index", "-1");
+    el[flag ? "removeAttribute" : "setAttribute"]("tabindex", "-1");
   });
 
   setTimeout(() => {
@@ -99,6 +100,9 @@ function onModalClick(event) {
 }
 
 function onModalTriggerClick(event) {
+  const {type, code } = event;
+  if(type === 'keyup' && code && code !== 'Enter' && code !== 'Space') return;
+
   const { dataset } = event.target;
   const modalName = dataset.modalTrigger;
   const modalEle = document.querySelector(`[data-modal="${modalName}"]`);
@@ -106,19 +110,47 @@ function onModalTriggerClick(event) {
   if (modalEle) toggleModal(true, modalName);
 }
 
-// ==========================
+/**
+ * Document Keyups
+ */
+function onDocumentKeyup(event) {
+  const { code } = event;
+  if(!code) return;
+
+  if(code === 'Escape') {
+    const openModalEl = document.querySelector('[data-modal][aria-hidden="false"]');
+    if(openModalEl) toggleModal(false, openModalEl.getAttribute('data-modal'));
+    if(isNavExpanded()) toggleMobileNav(false);
+  }
+}
+
 /**
  * Listeners
  */
-window.addEventListener("resize", onResize);
-elements.navToggle.addEventListener("click", onToggleClick);
-[...elements.modals].map((el) => el.addEventListener("click", onModalClick));
-[...elements.modalTriggers].map((el) =>
-  el.addEventListener("click", onModalTriggerClick)
-);
+function addListeners() {
+  window.addEventListener("resize", onResize);
+  elements.navToggle.addEventListener("click", onToggleClick);
+  [...elements.modals].map((el) => el.addEventListener("click", onModalClick));
+  [...elements.modalTriggers].map((el) => {
+      el.addEventListener("click", onModalTriggerClick);
+      el.addEventListener("keyup", onModalTriggerClick);
+    }
+  );
+  document.addEventListener("keyup", onDocumentKeyup);
+}
 
 /**
  * On Load
  */
-if (window.innerWidth > CONSTANTS.BREAKPOINTS.TABLET)
-  toggleMobileNav(true, true);
+function onLoad() {
+  // Nav Toggles on Load
+  toggleMobileNav(window.innerWidth > CONSTANTS.BREAKPOINTS.TABLET ? true : false, true);
+}
+
+/**
+ * Kick it!
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  addListeners();
+  onLoad();
+});

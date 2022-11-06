@@ -17,6 +17,7 @@ const pages = getPages();
 const pageEntries = getPagesEntryObject();
 const pageHead = require("./src/pages/partials/head");
 const pageNav = require("./src/pages/partials/nav");
+const pageScripts = require("./src/pages/partials/scripts");
 
 // Start Config
 module.exports = {
@@ -103,6 +104,7 @@ module.exports = {
           pageName: `${page}`,
           pageHead,
           pageNav,
+          pageScripts,
         })
     ),
 

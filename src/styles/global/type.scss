@@ -9,25 +9,35 @@ p {
 }
 
 h1 {
-  @include font-title-black;
-  font-size: rem-calc(48);
-  line-height: rem-calc(60);
+  @include font-title;
+  font-size: rem-calc(60);
+  line-height: rem-calc(70);
+  padding: rem-calc(8) 0 rem-calc(16);
 }
 
 h2 {
-  @include font-title-black;
-  font-size: rem-calc(40);
-  line-height: rem-calc(44);
+  @include font-default;
+  font-weight: 200;
+  font-size: rem-calc(50);
+  line-height: rem-calc(58);
 }
 
 h3 {
-  @include font-title;
+  @include font-default;
   font-size: rem-calc(36);
   line-height: rem-calc(38);
 }
 
 h4 {
-  @include font-title;
+  @include font-default;
   font-size: rem-calc(30);
   line-height: rem-calc(32);
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  line-break: anywhere;
 }

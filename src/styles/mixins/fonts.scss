@@ -9,11 +9,6 @@
 }
 
 @mixin font-title {
-  font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+  font-family: "Pacifico", Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
-}
-
-@mixin font-title-black {
-  font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
-  font-weight: 900;
 }

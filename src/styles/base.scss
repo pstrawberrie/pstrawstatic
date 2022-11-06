@@ -42,6 +42,15 @@ a:active {
   color: inherit;
 }
 
+a,
+button,
+[data-modal-trigger] {
+  &:focus,
+  &:focus-within {
+    outline: 2px solid #f0f;
+  }
+}
+
 main {
   @include contain;
 }

@@ -28,7 +28,7 @@ const navLinks = () => {
 
 module.exports = `
   <nav class="nav-main">
-    <button aria-expanded="false" class="toggle">
+    <button aria-expanded="false" class="toggle" tabindex="0">
       <span class="l1"></span>
       <span class="l2"></span>
       <span class="l3"></span>
